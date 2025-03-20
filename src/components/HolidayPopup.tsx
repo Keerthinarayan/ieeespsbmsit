@@ -14,7 +14,7 @@ const HolidayPopup: React.FC = () => {
       icon: <Globe className="w-16 h-16 text-white" />,
     },
     {
-      title: "IEEE SPS Conference 2025",
+      title: "IEEE Conference 2025",
       description: "Experience the future of signal processing technology. Connect with experts, discover cutting-edge research, and be part of this grand celebration.",
       icon: <Users className="w-16 h-16 text-white" />,
     },
