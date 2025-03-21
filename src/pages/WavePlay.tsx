@@ -11,25 +11,32 @@ const WavePlay = () => {
 
   const games = [
     {
-      title: 'Fourier Signal Game',
+      title: 'Vibe Check',
       description: 'Explore the fascinating world of Fourier transforms through an interactive gaming experience.',
       icon: <Waveform className="w-12 h-12" />,
       link: 'https://fouriersignal.netlify.app/',
       color: 'from-purple-500 to-pink-500',
     },
     {
-      title: 'Waveform Matching Game',
+      title: 'ScreamSync',
       description: 'Test your signal processing skills by matching various waveform patterns.',
       icon: <Waveform className="w-12 h-12" />,
       link: 'https://waveformed.netlify.app/',
       color: 'from-blue-500 to-cyan-500',
     },
     {
-      title: 'Circuits Game',
+      title: 'Circuit Cracked',
       description: 'Challenge yourself with interactive circuit puzzles and simulations.',
       icon: <Circuit className="w-12 h-12" />,
       link: 'https://circuitss.netlify.app/',
       color: 'from-green-500 to-emerald-500',
+    },
+    {
+      title: 'Hear Me Out',
+      description: 'Dive into an auditory adventure and test your hearing and signal processing skills.',
+      icon: <Waveform className="w-12 h-12" />,
+      link: 'https://bmsit-ieee.github.io/sps/HearMeOut/index.html',
+      color: 'from-yellow-500 to-orange-500',
     },
   ];
 
