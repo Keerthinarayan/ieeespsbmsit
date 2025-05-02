@@ -1,53 +1,47 @@
-import React, { useEffect, useLayoutEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ChevronDown } from 'lucide-react';
+import React from 'react';
+import { ChevronDown, Users, Clock, ExternalLink, Calendar, Lightbulb, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-gsap.registerPlugin(ScrollTrigger);
-
 const Spectrum = () => {
-  const textRef = useRef(null);
+  const projects = [
+    {
+      title: "Signal Processing Lab",
+      status: "Ongoing",
+      teamSize: "8 members",
+      head: "Dr. Saneesh",
+      description: "Advanced research in digital signal processing algorithms",
+      formLink: "https://forms.gle/YourFormLink1",
+      lastDate: "15/05/2025"
+    },
+    {
+      title: "Image Recognition AI",
+      status: "Ongoing",
+      teamSize: "10 members",
+      head: "Sourabh",
+      description: "AI-powered image recognition using signal processing",
+      formLink: "https://forms.gle/YourFormLink3",
+      lastDate: "20/8/2025"
+    },
+    {
+      title: "Audio Processing System",
+      status: "Completed",
+      teamSize: "6 members",
+      head: "Vikas",
+      description: "Development of real-time audio processing systems",
+      formLink: "https://forms.gle/YourFormLink2",
+      lastDate: "1 BCE"
+    }
+    
+  ];
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      const lines = textRef.current.querySelectorAll('.line');
-      const masks = [];
-
-      lines.forEach((line) => {
-        const mask = document.createElement("span");
-        mask.className = "mask";
-        line.appendChild(mask);
-        masks.push(mask);
-
-        gsap.to(mask, {
-          scaleX: 0,
-          transformOrigin: "right center",
-          ease: "power2.inOut",
-          scrollTrigger: {
-            trigger: line,
-            start: "top center",
-            end: "bottom center",
-            scrub: 2
-          }
-        });
-      });
-
-      return () => {
-        ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-        masks.forEach(mask => mask.remove());
-      };
-    });
-
-    return () => ctx.revert();
-  }, []);
+  const suggestionFormLink = "https://forms.gle/YourSuggestionFormLink";
 
   return (
-    <div className="min-h-[200vh] bg-black">
-      {/* First Section with Stars and Scroll Indicator */}
-      <div className="h-screen relative overflow-hidden flex flex-col items-center justify-center">
-        {/* Stars Background */}
-        {[...Array(50)].map((_, i) => (
+    <div className="min-h-screen bg-black overflow-hidden">
+      {/* First Section with Stars and Title */}
+      <div className="h-screen relative flex flex-col items-center justify-center px-4">
+        {/* Stars Background - Reduced number on mobile */}
+        {[...Array(30)].map((_, i) => (
           <div
             key={i}
             className="absolute w-1 h-1 bg-white rounded-full"
@@ -60,15 +54,26 @@ const Spectrum = () => {
           />
         ))}
 
-        {/* Welcome Text */}
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="text-white text-2xl md:text-4xl font-light mb-12 text-center px-4"
-        >
-          Welcome to the future of signal processing
-        </motion.h2>
+        {/* Title */}
+        <div>
+          <motion.h1
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-4 text-center"
+          >
+            SPS Spectrum
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.7 }}
+            className="text-base sm:text-xl text-blue-200 mb-8 text-center max-w-2xl px-2"
+          >
+            Explore our innovative signal processing projects
+          </motion.p>
+        </div>
 
         {/* Scroll Indicator */}
         <motion.div
@@ -81,147 +86,185 @@ const Spectrum = () => {
           }}
           className="absolute bottom-10 flex flex-col items-center"
         >
-          <span className="text-white/80 text-sm mb-2">Scroll to explore</span>
-          <ChevronDown className="w-6 h-6 text-white/80" />
+          <span className="text-white/80 text-xs sm:text-sm mb-2">Scroll to explore projects</span>
+          <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 text-white/80" />
         </motion.div>
       </div>
 
-      {/* Main Content */}
-      <div className="relative">
-        <div ref={textRef} className="max-w-4xl mx-auto px-4">
-          <div className="space-y-4">
-            <div className="line relative overflow-hidden py-2">
-              <span className="text-5xl md:text-7xl font-bold text-white block">Unleash the magic</span>
-            </div>
-            <div className="line relative overflow-hidden py-2">
-              <span className="text-5xl md:text-7xl font-bold text-white block">of sound waves</span>
-            </div>
-            <div className="line relative overflow-hidden py-2">
-              <span className="text-5xl md:text-7xl font-bold text-white block">where every frequency</span>
-            </div>
-            <div className="line relative overflow-hidden py-2">
-              <span className="text-5xl md:text-7xl font-bold text-red-500 block">tells a story</span>
-            </div>
-            <div className="line relative overflow-hidden py-2">
-              <span className="text-5xl md:text-7xl font-bold text-white block">waiting to be heard.</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Animated Waveform */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-          <svg
-            className="w-full h-full opacity-20"
-            viewBox="0 0 1200 400"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M0,100 Q300,300 600,100 T1200,100"
-              fill="none"
-              stroke="url(#gradient)"
-              strokeWidth="2"
-              className="animate-wave"
+      {/* Projects Section - With space theme */}
+      <div className="relative py-12 sm:py-20 px-4 overflow-hidden">
+        {/* Space-themed background */}
+        <div className="absolute inset-0 bg-black">
+          {/* Stars in the background - Reduced number on mobile */}
+          {[...Array(50)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-white rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                opacity: Math.random() * 0.7 + 0.3,
+                animation: `twinkle ${Math.random() * 3 + 2}s infinite ${Math.random() * 2}s`
+              }}
             />
-            <path
-              d="M0,150 Q300,50 600,150 T1200,150"
-              fill="none"
-              stroke="url(#gradient)"
-              strokeWidth="2"
-              className="animate-wave-delayed"
-            />
-            <defs>
-              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#4F46E5" />
-                <stop offset="50%" stopColor="#EC4899" />
-                <stop offset="100%" stopColor="#4F46E5" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-      </div>
-
-      {/* Final Section with Floating Particles */}
-      <div className="h-screen relative overflow-hidden flex items-center justify-center">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+          ))}
+          
+          {/* Distant nebula effect - Smaller on mobile */}
+          <div 
+            className="absolute blur-2xl sm:blur-3xl opacity-20"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `float ${Math.random() * 5 + 3}s infinite ${Math.random() * 2}s`
+              top: '20%',
+              right: '10%',
+              width: '60%',
+              height: '30%',
+              background: 'radial-gradient(circle, rgba(79, 70, 229, 0.4) 0%, rgba(236, 72, 153, 0.2) 50%, rgba(0, 0, 0, 0) 70%)',
+              animation: 'pulse 15s ease-in-out infinite'
             }}
           />
-        ))}
-        
-        {/* Final Message */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
-          className="text-center px-4"
-        >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Welcome to SPS Spectrum
-          </h2>
-          <p className="text-lg md:text-xl text-white/80">
-            Your gateway to advanced audio processing
-          </p>
-        </motion.div>
+          <div 
+            className="absolute blur-2xl sm:blur-3xl opacity-10"
+            style={{
+              bottom: '10%',
+              left: '5%',
+              width: '40%',
+              height: '30%',
+              background: 'radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, rgba(79, 70, 229, 0.2) 40%, rgba(0, 0, 0, 0) 70%)',
+              animation: 'pulse 20s ease-in-out infinite reverse'
+            }}
+          />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ 
+                  boxShadow: "0 0 25px rgba(79, 70, 229, 0.4)",
+                  borderColor: "rgba(79, 70, 229, 0.6)",
+                  transition: { duration: 0.3 }
+                }}
+                className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-blue-500/20 transition-all"
+              >
+                <div className="flex justify-between items-start mb-3 sm:mb-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-white">{project.title}</h3>
+                  <span className={`px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-semibold ${
+                    project.status === "Ongoing" 
+                      ? "bg-green-500/20 text-green-400"
+                      : "bg-red-500/20 text-red-400"
+                  }`}>
+                    {project.status}
+                  </span>
+                </div>
+
+                <p className="text-sm sm:text-base text-gray-400 mb-3 sm:mb-4">{project.description}</p>
+
+                <div className="space-y-2 mb-4 sm:mb-6">
+                  <div className="flex items-center text-gray-300">
+                    <Users className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+                    <span className="text-xs sm:text-sm">{project.teamSize}</span>
+                  </div>
+                  <div className="flex items-center text-gray-300">
+                    <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+                    <span className="text-xs sm:text-sm">Head: {project.head}</span>
+                  </div>
+                  <div className="flex items-center text-gray-300">
+                    <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
+                    <span className="text-xs sm:text-sm">Last Date: {project.lastDate}</span>
+                  </div>
+                </div>
+
+                <motion.a
+                  href={project.formLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center space-x-2 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg transition-colors text-sm sm:text-base ${
+                    project.status === "Over" 
+                      ? "bg-gray-600 cursor-not-allowed" 
+                      : "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500"
+                  }`}
+                  whileHover={{ scale: project.status === "Over" ? 1 : 1.05 }}
+                  whileTap={{ scale: project.status === "Over" ? 1 : 0.95 }}
+                >
+                  <span>{project.status === "Over" ? "Closed" : "Apply Now"}</span>
+                  {project.status !== "Over" && <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />}
+                </motion.a>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Horizontal Suggestion Box */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            className="bg-gradient-to-r from-purple-900/50 to-indigo-900/50 backdrop-blur-sm rounded-lg p-6 sm:p-8 border border-purple-500/30 hover:border-purple-500/50 transition-all relative overflow-hidden"
+          >
+            {/* Sparkle decoration - Smaller on mobile */}
+            <Sparkles className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-16 h-16 sm:w-24 sm:h-24 text-purple-400/20" />
+            
+            <div className="flex flex-col md:flex-row items-center justify-between">
+              <div className="flex items-center mb-4 sm:mb-6 md:mb-0">
+                <div className="bg-purple-600/20 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
+                  <Lightbulb className="w-6 h-6 sm:w-8 sm:h-8 text-purple-300" />
+                </div>
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">Got an Idea?</h3>
+                  <p className="text-xs sm:text-base text-purple-200">
+                    Suggest a new project for our team to consider
+                  </p>
+                </div>
+              </div>
+              
+              <motion.a
+                href={suggestionFormLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-lg transition-all group text-sm sm:text-base"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                <span className="font-medium">Submit Your Suggestion</span>
+                <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+              </motion.a>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
-      <style>{`
+      <style jsx>{`
         @keyframes twinkle {
           0%, 100% { opacity: 0.3; transform: scale(1); }
           50% { opacity: 1; transform: scale(1.2); }
         }
-
+        
         @keyframes float {
-          0%, 100% {
-            transform: translate(0, 0) rotate(0deg);
-          }
-          25% {
-            transform: translate(10px, 10px) rotate(90deg);
-          }
-          50% {
-            transform: translate(0, 20px) rotate(180deg);
-          }
-          75% {
-            transform: translate(-10px, 10px) rotate(270deg);
-          }
-        }
-
-        .animate-wave {
-          animation: wave 15s infinite ease-in-out;
-        }
-
-        .animate-wave-delayed {
-          animation: wave 15s infinite ease-in-out;
-          animation-delay: -7.5s;
-        }
-
-        @keyframes wave {
           0% {
-            transform: translateX(0%);
+            transform: translate(0, 0) scale(1);
             opacity: 0.2;
           }
           50% {
-            opacity: 0.5;
+            transform: translate(30px, -30px) scale(1.2);
+            opacity: 0.3;
           }
           100% {
-            transform: translateX(-50%);
+            transform: translate(-30px, 30px) scale(1);
             opacity: 0.2;
           }
         }
-
-        .mask {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: black;
-          transform-origin: right center;
+        
+        @keyframes pulse {
+          0%, 100% {
+            transform: scale(1);
+            opacity: 0.7;
+          }
+          50% {
+            transform: scale(1.05);
+            opacity: 1;
+          }
         }
       `}</style>
     </div>
