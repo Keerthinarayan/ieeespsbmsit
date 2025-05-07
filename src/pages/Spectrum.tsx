@@ -276,28 +276,28 @@ const Spectrum = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80"
+                className="fixed inset-0 z-50 flex items-start justify-center p-4 bg-black/80 overflow-y-auto"
                 onClick={() => setSelectedProject(null)}
               >
                 <motion.div
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.9, opacity: 0 }}
-                  className="bg-gray-900 rounded-xl p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+                  className="bg-gray-900 rounded-xl p-4 sm:p-6 w-full max-w-2xl my-8 sm:my-12"
                   onClick={e => e.stopPropagation()}
                 >
                   {/* Close button */}
                   <button
                     onClick={() => setSelectedProject(null)}
-                    className="absolute top-4 right-4 text-gray-400 hover:text-white"
+                    className="absolute top-2 right-2 sm:top-4 sm:right-4 text-gray-400 hover:text-white p-2"
                   >
-                    <X className="w-6 h-6" />
+                    <X className="w-5 h-5 sm:w-6 sm:h-6" />
                   </button>
 
                   {/* Project title and status */}
-                  <div className="flex items-start justify-between mb-6">
-                    <h2 className="text-2xl font-bold text-white">{selectedProject.title}</h2>
-                    <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-6 pt-8 sm:pt-0">
+                    <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-0">{selectedProject.title}</h2>
+                    <span className={`px-3 py-1 rounded-full text-xs font-semibold w-fit ${
                       selectedProject.status === "Ongoing"
                         ? "bg-green-500/20 text-green-400"
                         : "bg-red-500/20 text-red-400"
@@ -308,20 +308,20 @@ const Spectrum = () => {
 
                   {/* Project overview */}
                   <div className="mb-6">
-                    <h3 className="text-lg font-semibold text-white mb-2 flex items-center">
-                      <BookOpen className="w-5 h-5 mr-2 text-blue-400" />
+                    <h3 className="text-base sm:text-lg font-semibold text-white mb-2 flex items-center">
+                      <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-400" />
                       Overview
                     </h3>
-                    <p className="text-gray-300">{selectedProject.detailedInfo.overview}</p>
+                    <p className="text-sm sm:text-base text-gray-300">{selectedProject.detailedInfo.overview}</p>
                   </div>
 
                   {/* Project objectives */}
                   <div className="mb-6">
-                    <h3 className="text-lg font-semibold text-white mb-2 flex items-center">
-                      <Target className="w-5 h-5 mr-2 text-blue-400" />
+                    <h3 className="text-base sm:text-lg font-semibold text-white mb-2 flex items-center">
+                      <Target className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-400" />
                       Objectives
                     </h3>
-                    <ul className="list-disc list-inside text-gray-300 space-y-1">
+                    <ul className="list-disc list-inside text-sm sm:text-base text-gray-300 space-y-1">
                       {selectedProject.detailedInfo.objectives.map((objective, index) => (
                         <li key={index}>{objective}</li>
                       ))}
@@ -330,11 +330,11 @@ const Spectrum = () => {
 
                   {/* Requirements */}
                   <div className="mb-6">
-                    <h3 className="text-lg font-semibold text-white mb-2 flex items-center">
-                      <Users className="w-5 h-5 mr-2 text-blue-400" />
+                    <h3 className="text-base sm:text-lg font-semibold text-white mb-2 flex items-center">
+                      <Users className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-400" />
                       Requirements
                     </h3>
-                    <ul className="list-disc list-inside text-gray-300 space-y-1">
+                    <ul className="list-disc list-inside text-sm sm:text-base text-gray-300 space-y-1">
                       {selectedProject.detailedInfo.requirements.map((req, index) => (
                         <li key={index}>{req}</li>
                       ))}
@@ -343,11 +343,11 @@ const Spectrum = () => {
 
                   {/* Benefits */}
                   <div className="mb-6">
-                    <h3 className="text-lg font-semibold text-white mb-2 flex items-center">
-                      <Award className="w-5 h-5 mr-2 text-blue-400" />
+                    <h3 className="text-base sm:text-lg font-semibold text-white mb-2 flex items-center">
+                      <Award className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-400" />
                       Benefits
                     </h3>
-                    <ul className="list-disc list-inside text-gray-300 space-y-1">
+                    <ul className="list-disc list-inside text-sm sm:text-base text-gray-300 space-y-1">
                       {selectedProject.detailedInfo.benefits.map((benefit, index) => (
                         <li key={index}>{benefit}</li>
                       ))}
@@ -357,34 +357,34 @@ const Spectrum = () => {
                   {/* Timeline and Location */}
                   <div className="mb-6">
                     <div className="flex items-center mb-2">
-                      <Clock className="w-5 h-5 mr-2 text-blue-400" />
-                      <span className="text-white font-semibold">Timeline:</span>
-                      <span className="text-gray-300 ml-2">{selectedProject.detailedInfo.timeline}</span>
+                      <Clock className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-400" />
+                      <span className="text-white font-semibold text-sm sm:text-base">Timeline:</span>
+                      <span className="text-gray-300 ml-2 text-sm sm:text-base">{selectedProject.detailedInfo.timeline}</span>
                     </div>
                     <div className="flex items-center">
-                      <Building className="w-5 h-5 mr-2 text-blue-400" />
-                      <span className="text-white font-semibold">Location:</span>
-                      <span className="text-gray-300 ml-2">{selectedProject.detailedInfo.location}</span>
+                      <Building className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-blue-400" />
+                      <span className="text-white font-semibold text-sm sm:text-base">Location:</span>
+                      <span className="text-gray-300 ml-2 text-sm sm:text-base">{selectedProject.detailedInfo.location}</span>
                     </div>
                   </div>
 
                   {/* Contact Information */}
                   <div className="bg-blue-900/20 rounded-lg p-4">
-                    <h3 className="text-lg font-semibold text-white mb-3">Contact Information</h3>
+                    <h3 className="text-base sm:text-lg font-semibold text-white mb-3">Contact Information</h3>
                     <div className="space-y-2">
                       <div className="flex items-center">
                         <Mail className="w-4 h-4 mr-2 text-blue-400" />
-                        <a href={`mailto:${selectedProject.detailedInfo.contact.email}`} className="text-blue-400 hover:text-blue-300">
+                        <a href={`mailto:${selectedProject.detailedInfo.contact.email}`} className="text-blue-400 hover:text-blue-300 text-sm sm:text-base break-all">
                           {selectedProject.detailedInfo.contact.email}
                         </a>
                       </div>
                       <div className="flex items-center">
                         <Phone className="w-4 h-4 mr-2 text-blue-400" />
-                        <span className="text-gray-300">{selectedProject.detailedInfo.contact.phone}</span>
+                        <span className="text-gray-300 text-sm sm:text-base">{selectedProject.detailedInfo.contact.phone}</span>
                       </div>
                       <div className="flex items-center">
                         <Building className="w-4 h-4 mr-2 text-blue-400" />
-                        <span className="text-gray-300">{selectedProject.detailedInfo.contact.office}</span>
+                        <span className="text-gray-300 text-sm sm:text-base">{selectedProject.detailedInfo.contact.office}</span>
                       </div>
                     </div>
                   </div>
