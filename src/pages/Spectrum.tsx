@@ -279,21 +279,24 @@ const Spectrum = () => {
                 className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80 overflow-y-auto pt-16 sm:pt-0"
                 onClick={() => setSelectedProject(null)}
               >
-                {/* Close button - fixed position and improved visibility */}
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="fixed top-4 right-4 text-gray-400 hover:text-white p-2 z-50 bg-gray-800/80 rounded-full shadow-lg"
-                >
-                  <X className="w-5 h-5 sm:w-6 sm:h-6" />
-                </button>
-
                 <motion.div
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.9, opacity: 0 }}
-                  className="bg-gray-900 rounded-xl p-4 sm:p-6 w-full max-w-2xl my-4 sm:my-12 mx-2 sm:mx-4 max-h-[85vh] overflow-y-auto"
+                  className="bg-gray-900 rounded-xl p-4 sm:p-6 w-full max-w-2xl my-4 sm:my-12 mx-2 sm:mx-4 max-h-[85vh] overflow-y-auto relative"
                   onClick={e => e.stopPropagation()}
                 >
+                  {/* Modified Close button - positioned in top right corner with theme-matching styles */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedProject(null);
+                    }}
+                    className="absolute top-2 right-2 text-white/80 hover:text-blue-300 p-1.5 z-50 bg-blue-600/30 hover:bg-blue-600/50 rounded-full transition-all border border-blue-500/40 hover:border-blue-400/60 backdrop-blur-sm"
+                  >
+                    <X className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </button>
+
                   {/* Project title and status */}
                   <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4 sm:mb-6">
                     <h2 className="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-0">{selectedProject.title}</h2>
