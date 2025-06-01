@@ -17,7 +17,7 @@ const Events = () => {
       date: 'June  12 - 14, 2025',
       location: 'APJ Lab, BMSIT, Bengaluru',
       description: 'IEEE SPS flagship event of 2025 , Students collaborating on innovative signal processing solutions',
-      image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+      image: 'https://i.imgur.com/YiIUzvB.jpeg',
       attendees: 250,
       topics: ['AI & ML', 'Signal Theory', 'Applications'],
       registrationLink: 'https://www.decodex.one/', 
