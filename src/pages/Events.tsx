@@ -14,10 +14,10 @@ const Events = () => {
   const upcomingEvents = [
     {
       title: 'Decode X 2025',
-      date: 'June  12 - 14, 2025',
+      date:'September  20 - 21, 2025',
       location: 'APJ Lab, BMSIT, Bengaluru',
       description: 'IEEE SPS flagship event of 2025 , Students collaborating on innovative signal processing solutions',
-      image: 'https://i.imgur.com/YiIUzvB.jpeg',
+      image: 'https://i.imgur.com/le3uKIO.png',
       attendees: 250,
       topics: ['AI & ML', 'Signal Theory', 'Applications'],
       registrationLink: 'https://www.decodex.one/', 
