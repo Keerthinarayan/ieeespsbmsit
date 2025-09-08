@@ -13,8 +13,8 @@ const EventPopup: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentEvent] = useState<Event>({
     title: "Decode X 2025",
-    date: 'June  12 - 14, 2025',
-    description: "'IEEE SPS flagship event of 2025"
+    date: 'September  20 - 21, 2025',
+    description: "IEEE SPS flagship event of 2025"
   });
 
   useEffect(() => {
